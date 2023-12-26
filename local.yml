@@ -1,0 +1,13 @@
+---
+- name: Set up worstation based on Ubuntu Server with Sway etc.
+  hosts: localhost
+  become: yes
+  tasks:
+    - name: Update apt cache and install packages
+      apt:
+        name: "{{ item }}"
+        update_cache: yes
+      loop:
+        - zsh
+        - curl
+        - unzip
