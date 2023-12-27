@@ -1,0 +1,48 @@
+# ~/.profile: executed by the command interpreter for login shells.
+# This file is not read by bash(1), if ~/.bash_profile or ~/.bash_login
+# exists.
+# see /usr/share/doc/bash/examples/startup-files for examples.
+# the files are located in the bash-doc package.
+
+# the default umask is set in /etc/profile; for setting the umask
+# for ssh logins, install and configure the libpam-umask package.
+#umask 022
+
+# if running bash
+if [ -n "$BASH_VERSION" ]; then
+    # include .bashrc if it exists
+    if [ -f "$HOME/.bashrc" ]; then
+	. "$HOME/.bashrc"
+    fi
+fi
+
+export EDITOR="/usr/bin/vim"
+
+# set PATH so it includes user's private bin directories
+PATH="$HOME/bin:$HOME/.local/bin:$PATH"
+
+PATH=$PATH:/usr/local/go/bin
+PATH=$PATH:$HOME/go/bin
+
+alias ls='ls -lh --color=auto'
+alias la='ls -lah --color=auto'
+alias tm='tmux -2'
+alias v='vim'
+
+alias usbm='udisksctl mount -b'
+alias usbu='udisksctl unmount -b'
+
+refreshrepo() {
+    git checkout upstream/$1 && git pull --rebase && git checkout $1 && git rebase upstream/$1 && git push
+}
+
+alias venvs="/bin/ls ~/.venvs/"
+vact(){ source "/home/joseph/.venvs/$1/bin/activate"; }
+
+alias batt='upower -i $(upower -e | grep BAT) | grep --color=never -E "state|to\ full|to\ empty|percentage"'
+
+# Used as part of running the SSH agent automatically.
+#export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
+
+# This prevents blanked windows in IntelliJ IDEA.
+#export _JAVA_AWT_WM_NONREPARENTING=1
