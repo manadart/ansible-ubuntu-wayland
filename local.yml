@@ -2,6 +2,8 @@
 - name: Set up worstation based on Ubuntu Server with Sway etc.
   hosts: localhost
   become: yes
+  vars:
+    for_user: joseph
   tasks:
     - name: Update apt cache and install packages
       apt:
@@ -19,4 +21,18 @@
         - tmux
         - build-essential
         - sway
-          
+    - name: Ensure user directories exist
+      file: path={{item}} state=directory owner={{for_user}} group={{for_user}} mode=774 recurse=yes
+      with_items:
+        - /home/{{for_user}}/.cache/zsh
+        - /home/{{for_user}}/.config/systemd/user
+        - /home/{{for_user}}/.config/sway
+        - /home/{{for_user}}/go/bin
+        - /home/{{for_user}}/go/pkg
+        - /home/{{for_user}}/go/src
+        - /home/{{for_user}}/bin
+        - /home/{{for_user}}/projects
+    - name: Copy user files
+      copy: src={{item.src}} dest={{item.dest}} owner={{for_user}} group={{for_user}} mode=664 force=no
+      with_items:
+        - { src: "files/dotzshrc", dest: "/home/{{for_user}}/.zshrc" }
