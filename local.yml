@@ -21,6 +21,12 @@
         - tmux
         - build-essential
         - sway
+    - name: Install snaps
+      command: snap install --classic {{item}}
+      with_items:
+        - firefox
+        - chromium
+        - goland
     - name: Ensure user directories exist
       file: path={{item}} state=directory owner={{for_user}} group={{for_user}} mode=774 recurse=yes
       with_items:
