@@ -9,5 +9,13 @@
         update_cache: yes
       loop:
         - zsh
+        - zsh-syntax-highlighting
         - curl
+        - wget
         - unzip
+        - silversearcher-ag
+        - pass
+        - openvpn
+        - tmux
+        - build-essential
+          
