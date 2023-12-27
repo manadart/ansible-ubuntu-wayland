@@ -36,5 +36,8 @@
       copy: src={{item.src}} dest={{item.dest}} owner={{for_user}} group={{for_user}} mode=664 force=no
       with_items:
         - { src: "files/dotzshrc", dest: "/home/{{for_user}}/.zshrc" }
+    - name: Install zsh autosuggestions
+      become_user: "{{for_user}}"
+      git: repo=https://github.com/zsh-users/zsh-autosuggestions.git dest=/home/{{for_user}}/projects/zsh-autosuggestions
     - name: Use zsh
       command: usermod --shell /usr/bin/zsh {{for_user}}
