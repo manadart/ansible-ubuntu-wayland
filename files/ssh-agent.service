@@ -1,0 +1,12 @@
+# This goes in ~/.config/systemd/user
+# "AddKeysToAgent yes" should also be added to ~/.ssh/config
+[Unit]
+Description=SSH key agent
+
+[Service]
+Type=forking
+Environment=SSH_AUTH_SOCK=%t/ssh-agent.socket
+ExecStart=/usr/bin/ssh-agent -a $SSH_AUTH_SOCK
+
+[Install]
+WantedBy=default.target

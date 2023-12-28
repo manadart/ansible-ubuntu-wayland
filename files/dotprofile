@@ -42,7 +42,7 @@ vact(){ source "/home/joseph/.venvs/$1/bin/activate"; }
 alias batt='upower -i $(upower -e | grep BAT) | grep --color=never -E "state|to\ full|to\ empty|percentage"'
 
 # Used as part of running the SSH agent automatically.
-#export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
+export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
 
 # This prevents blanked windows in IntelliJ IDEA.
-#export _JAVA_AWT_WM_NONREPARENTING=1
+export _JAVA_AWT_WM_NONREPARENTING=1
