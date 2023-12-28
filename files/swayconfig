@@ -217,3 +217,5 @@ bar {
 }
 
 include /etc/sway/config.d/*
+
+set $menu exec $term --class=launcher -e bash -c 'compgen -c | grep -v fzf | sort -u | fzf --layout=reverse | xargs -r swaymsg -t command exec'

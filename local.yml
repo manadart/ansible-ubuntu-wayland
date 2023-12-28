@@ -23,6 +23,7 @@
         - sway
         - upower
         - udisks2
+        - fzf
     - name: Install snaps
       command: snap install --classic {{item}}
       with_items:
