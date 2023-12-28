@@ -47,6 +47,7 @@
         - { src: "files/dotzshrc", dest: "/home/{{for_user}}/.zshrc" }
         - { src: "files/dottmux.conf", dest: "/home/{{for_user}}/.tmux.conf" }
         - { src: "files/ssh-agent.service", dest: "/home/{{for_user}}/.config/systemd/user/ssh-agent.service" }
+        - { src: "files/swayconfig", dest: "/home/{{for_user}}/.config/sway/config" }
     - name: Install zsh autosuggestions
       become_user: "{{for_user}}"
       git: repo=https://github.com/zsh-users/zsh-autosuggestions.git dest=/home/{{for_user}}/projects/zsh-autosuggestions
