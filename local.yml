@@ -5,6 +5,10 @@
   vars:
     for_user: joseph
   tasks:
+    - name: Add PPA for alacritty
+      apt_repository:
+        repo: 'ppa:aslatter/ppa'
+        state: present
     - name: Update apt cache and install packages
       apt:
         name: "{{ item }}"
@@ -24,6 +28,8 @@
         - upower
         - udisks2
         - fzf
+        - alacritty
+        - libwayland-egl1
     - name: Install snaps
       command: snap install --classic {{item}}
       with_items:
