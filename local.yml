@@ -61,8 +61,21 @@
         - { src: "files/dottmux.conf", dest: "/home/{{for_user}}/.tmux.conf" }
         - { src: "files/ssh-agent.service", dest: "/home/{{for_user}}/.config/systemd/user/ssh-agent.service" }
         - { src: "files/swayconfig", dest: "/home/{{for_user}}/.config/sway/config" }
+    - name: Use zsh
+      command: usermod --shell /usr/bin/zsh {{for_user}}
+    - name: Enable user services
+      become_user: "{{for_user}}"
+      ansible.builtin.systemd_service:
+        daemon_reload: true
+        name: "{{ item }}.service"
+        state: started
+        enabled: true
+        scope: user
+      loop:
+        - ssh-agent
+        - pipewire
+        - pipewire-pulse
     - name: Install zsh autosuggestions
       become_user: "{{for_user}}"
       git: repo=https://github.com/zsh-users/zsh-autosuggestions.git dest=/home/{{for_user}}/projects/zsh-autosuggestions
-    - name: Use zsh
-      command: usermod --shell /usr/bin/zsh {{for_user}}
+         
