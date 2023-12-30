@@ -9,6 +9,10 @@
       apt_repository:
         repo: 'ppa:aslatter/ppa'
         state: present
+    - name: Add PPA for pipewire
+      apt_repository:
+        repo: 'ppa:pipewire-debian/pipewire-upstream'
+        state: present
     - name: Update apt cache and install packages
       apt:
         name: "{{ item }}"
@@ -30,6 +34,8 @@
         - fzf
         - alacritty
         - libwayland-egl1
+        - pipewire
+        - pipewire-audio-client-libraries
     - name: Install snaps
       command: snap install --classic {{item}}
       with_items:
