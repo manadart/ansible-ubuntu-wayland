@@ -41,6 +41,8 @@
         - pipewire
         - pipewire-audio-client-libraries
         - wireplumber
+        - cmake
+        - python-dev-is-python3
     - name: Install snaps
       command: snap install --classic {{item}}
       with_items:
@@ -90,8 +92,19 @@
     - name: Install Vundle
       become_user: "{{for_user}}"
       git: repo=https://github.com/VundleVim/Vundle.vim.git dest=/home/{{for_user}}/.vim/bundle/Vundle.vim
-    - name: Install Vim Plugins
+    - name: Install Vim plugins
       become_user: "{{for_user}}"
       shell: vim -E -s -c "source /home/{{for_user}}/.vimrc" -c PluginInstall -c qa
       ignore_errors: yes
+    - name: Install Go
+      shell: |
+        wget -c https://storage.googleapis.com/golang/go1.21.6.linux-amd64.tar.gz
+        tar -C /usr/local -xvzf go1.21.6.linux-amd64.tar.gz
+        rm go1.21.6.linux-amd64.tar.gz
+    - name: Install YouCompleteMe
+      become_user: "{{for_user}}"
+      shell: |
+        export PATH=$PATH:/usr/local/go/bin
+        cd /home/{{for_user}}/.vim/bundle/YouCompleteMe
+        ./install.py --go-completer
                  
