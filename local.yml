@@ -60,14 +60,15 @@
         - /home/{{for_user}}/bin
         - /home/{{for_user}}/projects
     - name: Copy user files
-      copy: src={{item.src}} dest={{item.dest}} owner={{for_user}} group={{for_user}} mode=664 force=no
+      copy: src={{item.src}} dest={{item.dest}} owner={{for_user}} group={{for_user}} mode={{item.mode}} force=no
       with_items:
-        - { src: "files/dotprofile", dest: "/home/{{for_user}}/.profile" }
-        - { src: "files/dotzshrc", dest: "/home/{{for_user}}/.zshrc" }
-        - { src: "files/dottmux.conf", dest: "/home/{{for_user}}/.tmux.conf" }
-        - { src: "files/ssh-agent.service", dest: "/home/{{for_user}}/.config/systemd/user/ssh-agent.service" }
-        - { src: "files/swayconfig", dest: "/home/{{for_user}}/.config/sway/config" }
-        - { src: "files/alacritty.toml", dest: "/home/{{for_user}}/.config/alacritty/alacritty.toml" }
+        - { src: "files/dotprofile", dest: "/home/{{for_user}}/.profile", mode: 664 }
+        - { src: "files/dotzshrc", dest: "/home/{{for_user}}/.zshrc", mode: 664 }
+        - { src: "files/dottmux.conf", dest: "/home/{{for_user}}/.tmux.conf", mode: 664 }
+        - { src: "files/ssh-agent.service", dest: "/home/{{for_user}}/.config/systemd/user/ssh-agent.service", mode: 664 }
+        - { src: "files/swayconfig", dest: "/home/{{for_user}}/.config/sway/config", mode: 664 }
+        - { src: "files/alacritty.toml", dest: "/home/{{for_user}}/.config/alacritty/alacritty.toml", mode: 664 }
+        - { src: "files/status.sh", dest: "/home/{{for_user}}/.config/sway/status.sh", mode: 774 }
     - name: Use zsh
       command: usermod --shell /usr/bin/zsh {{for_user}}
     - name: Enable user services
