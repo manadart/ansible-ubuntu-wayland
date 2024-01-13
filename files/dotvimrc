@@ -1,0 +1,129 @@
+set nocompatible              " Be iMproved, required
+filetype off                  " Required
+
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+Plugin 'gmarik/Vundle.vim'
+
+Plugin 'honza/vim-snippets'
+Plugin 'SirVer/ultisnips'
+Plugin 'tpope/vim-fugitive'
+Plugin 'godlygeek/tabular'
+Plugin 'plasticboy/vim-markdown'
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'fatih/vim-go'
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'scrooloose/syntastic'
+Plugin 'mileszs/ack.vim'
+Plugin 'easymotion/vim-easymotion'
+
+call vundle#end()           " Required
+filetype plugin indent on   " Required
+
+" Basic Settings
+syntax on                   " Syntax highlighing.
+filetype on                 " Try to detect filetypes.
+filetype plugin indent on   " Enable loading indent file for filetype.
+set number                  " Display line numbers.
+set background=dark         " We are using dark background in vim.
+set title                   " Show title in console title bar.
+set wildmenu                " Menu completion in command mode on <Tab>.
+set wildmode=full           " <Tab> cycles between all matching choices.
+set textwidth=120           " Lines are automatically wrapped after this.
+set cc=+1                   " Puts a vertical coloured line after <textwidth> column.
+
+" Ignore these files when completing
+set wildignore+=*.o,*.obj,.git,*.pyc
+set wildignore+=eggs/**
+set wildignore+=*.egg-info/**
+
+" Moving Around/Editing
+set cursorline              " Have a line indicate the cursor line location.
+set cursorcolumn            " Have a line indicate the cursor column location.
+set ruler                   " Show the cursor position all the time.
+set nostartofline           " Avoid moving cursor to BOL when jumping around.
+set virtualedit=block       " Let cursor move past the last char in <C-v> mode.
+set scrolloff=3             " Keep 3 context lines above and below the cursor.
+set backspace=2             " Allow backspacing over autoindent, EOL, and BOL.
+set showmatch               " Briefly jump to a paren once it's balanced.
+set wrap                    " Wrap text.
+set linebreak               " Don't wrap textin the middle of a word.
+set autoindent              " Always set autoindenting on.
+set smartindent             " Use smart indent if there is no indent file.
+set tabstop=4               " <tab> inserts 4 spaces.
+set shiftwidth=4            " But an indent level is 2 spaces wide.
+set softtabstop=4           " <BS> over an autoindent deletes both spaces.
+set expandtab               " Use spaces, not tabs, for autoindent/tab key.
+set shiftround              " Rounds indent to a multiple of shiftwidth.
+set formatoptions=tcroql    " Setting text and comment formatting to auto.
+set ls=2                    " Show status bar with relative file path.
+
+" Searching and Patterns
+set ignorecase  " Default to using case insensitive searches,
+set smartcase   " unless uppercase letters are used in the regex.
+set hlsearch    " Highlight searches by default.
+set incsearch   " Incrementally search while typing a regex.
+
+" Cursor style for different modes
+let &t_SI = "\<Esc>[6 q"
+let &t_SR = "\<Esc>[4 q"
+let &t_EI = "\<Esc>[2 q"
+
+" For Markdown
+let g:vim_markdown_folding_disabled=1
+
+" YouCompleteMe
+let g:ycm_autoclose_preview_window_after_completion=1
+let g:ycm_goto_buffer_command='new-tab'
+
+" Syntax
+let g:syntastic_python_checkers = ['flake8']
+let g:syntastic_python_flake8_args='--ignore=E501'
+let g:syntastic_check_on_open = 1
+let g:syntastic_error_symbol = "█"
+let g:syntastic_style_error_symbol = ">"
+let g:syntastic_warning_symbol = "█"
+let g:syntastic_style_warning_symbol = ">"
+let g:syntastic_go_checkers = ['go', 'golint', 'govet', 'errcheck']
+
+" Highlighting for Go
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_structs = 1
+let g:go_highlight_operators = 1
+let g:go_auto_sameids = 1
+
+let g:UltiSnipsExpandTrigger="<c-j>"
+
+" Use ctrl-[hjkl] to select the active split.
+nmap <silent> <c-k> :wincmd k<CR>                                                                                      
+nmap <silent> <c-j> :wincmd j<CR>                                                                                      
+nmap <silent> <c-h> :wincmd h<CR>
+nmap <silent> <c-l> :wincmd l<CR>
+
+" Custom Commands
+let mapleader="\<SPACE>"
+nnoremap <leader>g :YcmCompleter GoTo<CR>
+nnoremap <leader>o :tabe<SPACE>
+nnoremap <leader>e :Vexplore!<CR>
+nnoremap <Leader>a :Ack!<Space>
+map <Leader> <Plug>(easymotion-prefix)
+
+" nnoremap <leader>t :tabn<CR>
+" nnoremap <leader>T :tabp<CR>
+
+if executable('ag')
+  let g:ackprg = 'ag --vimgrep'
+endif
+
+au FileType go nmap <Leader>g <Plug>(go-def-tab)
+
+" Colour Scheme
+set t_Co=256
+let g:solarized_termcolors=256
+let g:solarized_termtrans = 1
+colorscheme solarized
+
+autocmd VimEnter * silent exec "! echo -ne '\e[2 q'"
+autocmd VimLeave * silent exec "! echo -ne '\e[6 q'"

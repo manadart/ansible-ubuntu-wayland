@@ -69,6 +69,7 @@
         - { src: "files/swayconfig", dest: "/home/{{for_user}}/.config/sway/config", mode: 664 }
         - { src: "files/alacritty.toml", dest: "/home/{{for_user}}/.config/alacritty/alacritty.toml", mode: 664 }
         - { src: "files/status.sh", dest: "/home/{{for_user}}/.config/sway/status.sh", mode: 774 }
+        - { src: "files/dotvimrc", dest: "/home/{{for_user}}/.vimrc", mode: 664 }
     - name: Use zsh
       command: usermod --shell /usr/bin/zsh {{for_user}}
     - name: Enable user services
@@ -86,4 +87,11 @@
     - name: Install zsh autosuggestions
       become_user: "{{for_user}}"
       git: repo=https://github.com/zsh-users/zsh-autosuggestions.git dest=/home/{{for_user}}/projects/zsh-autosuggestions update=no
-         
+    - name: Install Vundle
+      become_user: "{{for_user}}"
+      git: repo=https://github.com/VundleVim/Vundle.vim.git dest=/home/{{for_user}}/.vim/bundle/Vundle.vim
+    - name: Install Vim Plugins
+      become_user: "{{for_user}}"
+      shell: vim -E -s -c "source /home/{{for_user}}/.vimrc" -c PluginInstall -c qa
+      ignore_errors: yes
+                 
