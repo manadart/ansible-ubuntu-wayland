@@ -43,6 +43,7 @@
         - wireplumber
         - cmake
         - python-dev-is-python3
+        - jq
     - name: Install snaps
       command: snap install --classic {{item}}
       with_items:
