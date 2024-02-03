@@ -1,0 +1,12 @@
+let mapleader=" "
+set easymotion
+
+" Custom Commands
+map <Leader> <Plug>(easymotion-prefix)
+map <Leader>j <Plug>(easymotion-j)
+map <Leader>k <Plug>(easymotion-k)
+
+" Searching and Patterns
+set hlsearch    " Highlight searches by default.
+set incsearch   " Incrementally search while typing a regex.
+
