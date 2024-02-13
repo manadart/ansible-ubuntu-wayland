@@ -74,6 +74,7 @@
         - { src: "files/status.sh", dest: "/home/{{for_user}}/.config/sway/status.sh", mode: 774 }
         - { src: "files/dotvimrc", dest: "/home/{{for_user}}/.vimrc", mode: 664 }
         - { src: "files/dotideavimrc", dest: "/home/{{for_user}}/.ideavimrc", mode: 664 }
+        - { src: "files/chromium-wayland", dest: "/home/{{for_user}}/bin/chromium-wayland", mode: 774 }
     - name: Use zsh
       command: usermod --shell /usr/bin/zsh {{for_user}}
     - name: Enable user services
