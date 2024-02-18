@@ -110,4 +110,12 @@
         export PATH=$PATH:/usr/local/go/bin
         cd /home/{{for_user}}/.vim/bundle/YouCompleteMe
         ./install.py --go-completer
+    - name: Clone adsorber
+      become_user: "{{for_user}}"
+      git: repo=https://github.com/stablestud/adsorber.git dest=/home/{{for_user}}/projects/adsorber update=no
+    - name: Run adsorber
+      shell: |
+        cd /home/{{for_user}}/projects/adsorber
+        ./portable_adsorber.sh enable
+        ./src/bin/adsorber enable --no-schedule --yes
                  
