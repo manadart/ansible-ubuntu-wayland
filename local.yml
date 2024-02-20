@@ -44,6 +44,7 @@
         - cmake
         - python-dev-is-python3
         - jq
+        - iptables-persistent
     - name: Install snaps
       command: snap install --classic {{item}}
       with_items:
