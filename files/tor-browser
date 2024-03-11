@@ -1,0 +1,3 @@
+#!/bin/sh
+cd /home/joseph/tor-browser
+./start-tor-browser.desktop
