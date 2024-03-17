@@ -46,6 +46,7 @@
         - jq
         - iptables-persistent
         - thunderbird
+        - swaylock
     - name: Install snaps
       command: snap install --classic {{item}}
       with_items:
