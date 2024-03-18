@@ -47,6 +47,7 @@
         - iptables-persistent
         - thunderbird
         - swaylock
+        - libnotify4
     - name: Install snaps
       command: snap install --classic {{item}}
       with_items:
