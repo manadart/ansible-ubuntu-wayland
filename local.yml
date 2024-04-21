@@ -48,6 +48,7 @@
         - thunderbird
         - swaylock
         - libnotify4
+        - brightnessctl
     - name: Install snaps
       command: snap install --classic {{item}}
       with_items:
@@ -131,4 +132,6 @@
         wget -c https://www.torproject.org/dist/torbrowser/13.0.10/tor-browser-linux-x86_64-13.0.10.tar.xz
         tar -xvJf tor-browser-linux-x86_64-13.0.10.tar.xz
         rm tor-browser-linux-x86_64-13.0.10.tar.xz
+    - name: Allow brightnessctl as non-root user
+      command: chmod +s $(which brightnessctl)
                  
