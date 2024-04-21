@@ -54,6 +54,7 @@
         - firefox
         - chromium
         - goland
+        - signal-desktop
     - name: Ensure user directories exist
       file: path={{item}} state=directory owner={{for_user}} group={{for_user}} mode=774 recurse=yes
       with_items:
