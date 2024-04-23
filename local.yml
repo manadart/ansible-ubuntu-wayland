@@ -47,8 +47,8 @@
         - iptables-persistent
         - thunderbird
         - swaylock
-        - libnotify4
         - brightnessctl
+        - mako-notifier
     - name: Install snaps
       command: snap install --classic {{item}}
       with_items:
