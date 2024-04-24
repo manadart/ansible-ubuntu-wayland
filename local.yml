@@ -49,6 +49,7 @@
         - swaylock
         - brightnessctl
         - mako-notifier
+        - ifstat
     - name: Install snaps
       command: snap install --classic {{item}}
       with_items:
