@@ -51,6 +51,7 @@
         - mako-notifier
         - ifstat
         - apparmor-utils
+        - notification-daemon
     - name: Install snaps
       command: snap install --classic {{item}}
       with_items:
