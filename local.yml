@@ -52,6 +52,7 @@
         - ifstat
         - apparmor-utils
         - notification-daemon
+        - mpv
     - name: Install snaps
       command: snap install --classic {{item}}
       with_items:
