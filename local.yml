@@ -53,6 +53,7 @@
         - apparmor-utils
         - notification-daemon
         - mpv
+        - xdg-desktop-portal-wlr
     - name: Install snaps
       command: snap install --classic {{item}}
       with_items:
