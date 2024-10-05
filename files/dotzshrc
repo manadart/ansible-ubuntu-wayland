@@ -77,3 +77,8 @@ GOPATH=$HOME/go
 autoload -U +X compinit && compinit
 autoload -U +X bashcompinit && bashcompinit
 [ -f /usr/share/bash-completion/completions/juju ] && source /usr/share/bash-completion/completions/juju
+
+if command -v tmux &> /dev/null && [ -n "$PS1" ] && [[ ! "$TERM" =~ screen ]] && [[ ! "$TERM" =~ tmux ]] && [ -z "$TMUX"]; then
+    exec tmux -2
+fi
+      
