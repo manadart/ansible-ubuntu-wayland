@@ -83,10 +83,10 @@
         - { src: "files/dotzshrc", dest: "/home/{{for_user}}/.zshrc", mode: 664 }
         - { src: "files/dottmux.conf", dest: "/home/{{for_user}}/.tmux.conf", mode: 664 }
         - { src: "files/ssh-agent.service", dest: "/home/{{for_user}}/.config/systemd/user/ssh-agent.service", mode: 664 }
-        - { src: "files/swayconfig", dest: "/home/{{for_user}}/.config/sway/config", mode: 664 }
-        - { src: "files/waybar-config.jsonc", dest: "/home/{{for_user}}/.config/waybar/config.jsonc", mode: 664 }
-        - { src: "files/waybar-style.css", dest: "/home/{{for_user}}/.config/waybar/style.css", mode: 664 }
-        - { src: "files/waybar-status.sh", dest: "/home/{{for_user}}/.config/waybar/status.sh", mode: 774 }
+        - { src: "files/swayconfig", dest: "/home/{{for_user}}/.config/sway/config", mode: 664, force: yes }
+        - { src: "files/waybar-config.jsonc", dest: "/home/{{for_user}}/.config/waybar/config.jsonc", mode: 664, force: yes }
+        - { src: "files/waybar-style.css", dest: "/home/{{for_user}}/.config/waybar/style.css", mode: 664, force: yes }
+        - { src: "files/waybar-status.sh", dest: "/home/{{for_user}}/.config/waybar/status.sh", mode: 774, force: yes }
         - { src: "files/alacritty.toml", dest: "/home/{{for_user}}/.config/alacritty/alacritty.toml", mode: 664 }
         - { src: "files/dotvimrc", dest: "/home/{{for_user}}/.vimrc", mode: 664 }
         - { src: "files/dotideavimrc", dest: "/home/{{for_user}}/.ideavimrc", mode: 664 }
@@ -142,6 +142,9 @@
         tar -xvJf tor-browser-linux-x86_64-15.0.5.tar.xz
         rm tor-browser-linux-x86_64-15.0.5.tar.xz
     - name: Allow brightnessctl as non-root user
-      command: chmod +s $(which brightnessctl)
+      shell: |
+        if command -v brightnessctl >/dev/null 2>&1; then
+          chmod +s "$(command -v brightnessctl)"
+        fi
     - name: Disable Apparmor for Mako
       command: aa-disable /etc/apparmor.d/fr.emersion.Mako
