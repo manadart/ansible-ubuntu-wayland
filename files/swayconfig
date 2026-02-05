@@ -222,6 +222,6 @@ bindsym $mod+r mode "resize"
 exec mako
 
 # Start waybar and restart it on config reload.
-exec_always sh -c 'pkill -x waybar; /usr/bin/waybar'
+exec_always --no-startup-id sh -c 'sleep 0.2; pkill -x waybar; /usr/bin/waybar'
 
 include /etc/sway/config.d/*
