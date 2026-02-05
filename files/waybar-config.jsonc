@@ -1,0 +1,13 @@
+{
+  "layer": "top",
+  "position": "top",
+  "height": 28,
+  "modules-left": ["sway/workspaces", "sway/mode"],
+  "modules-center": ["sway/window"],
+  "modules-right": ["custom/status"],
+  "custom/status": {
+    "exec": "$HOME/.config/waybar/status.sh",
+    "interval": 1,
+    "tooltip": false
+  }
+}

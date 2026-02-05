@@ -33,6 +33,8 @@
         - tmux
         - build-essential
         - sway
+        - waybar
+        - xwayland
         - upower
         - udisks2
         - fzf
@@ -67,6 +69,7 @@
         - /home/{{for_user}}/.cache/zsh
         - /home/{{for_user}}/.config/systemd/user
         - /home/{{for_user}}/.config/sway
+        - /home/{{for_user}}/.config/waybar
         - /home/{{for_user}}/.config/alacritty
         - /home/{{for_user}}/go/bin
         - /home/{{for_user}}/go/pkg
@@ -81,8 +84,10 @@
         - { src: "files/dottmux.conf", dest: "/home/{{for_user}}/.tmux.conf", mode: 664 }
         - { src: "files/ssh-agent.service", dest: "/home/{{for_user}}/.config/systemd/user/ssh-agent.service", mode: 664 }
         - { src: "files/swayconfig", dest: "/home/{{for_user}}/.config/sway/config", mode: 664 }
+        - { src: "files/waybar-config.jsonc", dest: "/home/{{for_user}}/.config/waybar/config.jsonc", mode: 664 }
+        - { src: "files/waybar-style.css", dest: "/home/{{for_user}}/.config/waybar/style.css", mode: 664 }
+        - { src: "files/waybar-status.sh", dest: "/home/{{for_user}}/.config/waybar/status.sh", mode: 774 }
         - { src: "files/alacritty.toml", dest: "/home/{{for_user}}/.config/alacritty/alacritty.toml", mode: 664 }
-        - { src: "files/status.sh", dest: "/home/{{for_user}}/.config/sway/status.sh", mode: 774 }
         - { src: "files/dotvimrc", dest: "/home/{{for_user}}/.vimrc", mode: 664 }
         - { src: "files/dotideavimrc", dest: "/home/{{for_user}}/.ideavimrc", mode: 664 }
         - { src: "files/chromium-wayland", dest: "/home/{{for_user}}/bin/chromium-wayland", mode: 774 }
