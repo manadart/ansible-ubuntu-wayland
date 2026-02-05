@@ -118,9 +118,9 @@
       ignore_errors: yes
     - name: Install Go
       shell: |
-        wget -c https://storage.googleapis.com/golang/go1.21.6.linux-amd64.tar.gz
-        tar -C /usr/local -xvzf go1.21.6.linux-amd64.tar.gz
-        rm go1.21.6.linux-amd64.tar.gz
+        wget -c https://go.dev/dl/go1.25.7.linux-amd64.tar.gz
+        tar -C /usr/local -xvzf go1.25.7.linux-amd64.tar.gz
+        rm go1.25.7.linux-amd64.tar.gz
     - name: Install YouCompleteMe
       become_user: "{{for_user}}"
       shell: |
