@@ -57,6 +57,7 @@
         - notification-daemon
         - mpv
         - xdg-desktop-portal-wlr
+        - libnotify-bin
     - name: Install snaps
       command: snap install --classic {{item}}
       with_items:
@@ -149,3 +150,6 @@
         fi
     - name: Disable Apparmor for Mako
       command: aa-disable /etc/apparmor.d/fr.emersion.Mako
+    - name: Make Mozilla Apps Use Wayland
+      shell: |
+        echo 'MOZ_ENABLE_WAYLAND=1' | tee /etc/environment
