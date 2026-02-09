@@ -33,6 +33,7 @@
         - tmux
         - build-essential
         - sway
+        - swayidle
         - waybar
         - xwayland
         - upower
