@@ -58,6 +58,7 @@
         - mpv
         - xdg-desktop-portal-wlr
         - libnotify-bin
+        - openvpn-systemd-resolved
     - name: Install snaps
       command: snap install --classic {{item}}
       with_items:
